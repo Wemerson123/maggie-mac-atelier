@@ -823,11 +823,32 @@ document.getElementById('yr').textContent=new Date().getFullYear();
     setTimeout(()=>document.getElementById('index').classList.add('lit'),520);
     setTimeout(()=>el.remove(),1800);};
   if(RM){bar.style.width='100%';ct.textContent='100';setTimeout(fin,120);return;}
-  const t=setInterval(()=>{
-    p+=100/(2600/20);
-    if(p>=100){p=100;clearInterval(t);setTimeout(fin,420);}
-    bar.style.width=p+'%';ct.textContent=Math.round(p);
-  },20);
+
+  /* Driven by elapsed wall-clock time, not by counting ticks. A backgrounded tab
+     throttles timers to ~1/s, so a tick-counted splash would still be loading when
+     the visitor returns — the exact failure when a link is opened in a background tab. */
+  const DUR=2600, t0=performance.now();
+  let done=false;
+  const settle=()=>{
+    if(done) return;
+    done=true;
+    bar.style.width='100%'; ct.textContent='100';
+    setTimeout(fin,420);
+  };
+  const tick=()=>{
+    if(done) return;
+    p=Math.min(100,((performance.now()-t0)/DUR)*100);
+    bar.style.width=p+'%'; ct.textContent=Math.round(p);
+    if(p>=100){settle();return;}
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+  // rAF is paused while hidden; catch up the instant the tab comes back
+  document.addEventListener('visibilitychange',()=>{
+    if(!done&&document.visibilityState==='visible') requestAnimationFrame(tick);
+  });
+  // last resort — never strand a visitor on a loading screen
+  setTimeout(settle,DUR+4000);
 })();
 
 /* NAV */
