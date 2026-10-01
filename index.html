@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Maggie Mac — Brow Atelier</title>
-<meta name="description" content="A brow atelier built on proportion. Mapping, threading, lamination and tint, by appointment.">
+<title>Maggie Mac Beauty — Bespoke Brow Artistry, Peregian Beach</title>
+<meta name="description" content="Bespoke cosmetic tattooing in Peregian Beach — natural brow tattooing, lip blush and lash line enhancement, tailored uniquely to you.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23EFE9E0'/><path d='M18 60c12-20 52-20 64 0' stroke='%232A211B' stroke-width='5' fill='none' stroke-linecap='round'/></svg>">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -324,19 +324,32 @@ nav.over .burger i{background:var(--shell)}
    BEFORE / AFTER — the signature moment
    ═══════════════════════════════════════════════════════ */
 .ba{position:relative;z-index:20;background:var(--shell-2);padding:clamp(90px,15vh,180px) var(--pad)}
-.ba .in{max-width:1080px;margin:0 auto}
+.ba .in{max-width:1180px;margin:0 auto;display:grid;gap:clamp(40px,6vh,64px)}
+@media(max-width:899px){.ba-copy{display:contents}.ba-tabs{order:3;margin-top:0}.ba .in{gap:clamp(30px,5vh,48px)}}
+@media(min-width:900px){.ba .in{grid-template-columns:1fr minmax(0,500px);gap:clamp(56px,7vw,110px);align-items:center}}
+.ba h2{font-family:'Marcellus',serif;font-size:clamp(28px,4vw,48px);line-height:1.16;margin:20px 0 22px}
+.ba-lede{font-size:15px;line-height:1.86;color:#4B4139;max-width:44ch}
+.ba-tabs{margin-top:clamp(30px,5vh,48px);border-top:1px solid var(--hair)}
+.ba-tab{display:flex;align-items:baseline;gap:22px;width:100%;padding:22px 0;background:none;border:0;
+  border-bottom:1px solid var(--hair);text-align:left;cursor:pointer;color:var(--soft);font:inherit;
+  transition:color .5s var(--slow),padding .6s var(--slow)}
+.ba-tab .n{font-size:10px;letter-spacing:.24em;color:var(--bronze)}
+.ba-tab .t{font-family:'Marcellus',serif;font-size:clamp(19px,1.9vw,24px);line-height:1.25}
+.ba-tab small{display:block;margin-top:6px;font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.01em;
+  max-height:0;opacity:0;overflow:hidden;transition:max-height .6s var(--slow),opacity .6s var(--slow)}
+.ba-tab:hover{color:var(--deep)}
+.ba-tab[aria-selected="true"]{color:var(--deep);padding-left:14px;box-shadow:inset 1px 0 0 var(--bronze)}
+.ba-tab[aria-selected="true"] small{max-height:40px;opacity:1;color:var(--soft)}
+.ba-tab:focus-visible{outline:1px solid var(--bronze);outline-offset:4px}
 .ba-frame{position:relative;overflow:hidden;aspect-ratio:4/5;background:var(--shell);
   cursor:ew-resize;user-select:none;-webkit-user-select:none;touch-action:pan-y}
-@media(min-width:760px){.ba-frame{aspect-ratio:16/10}}
 .ba-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  object-position:50% 26%;pointer-events:none;-webkit-user-drag:none}
+  pointer-events:none;-webkit-user-drag:none;transition:opacity .45s ease}
+.ba-frame.swap img{opacity:0}
 .ba-frame .after{clip-path:inset(0 0 0 var(--x,50%))}
-/* Measured on canvas: luminance 135 vs 130 and warmth (R−B) 69 vs 89, so the before
-   frame only needs a touch down and a touch warmer. Re-measure if either is replaced. */
-.ba-frame .before{filter:saturate(1.06) contrast(1.01) brightness(.97) sepia(.04)}
 .ba-line{position:absolute;top:0;bottom:0;left:var(--x,50%);width:1px;
   background:rgba(239,233,224,.92);pointer-events:none}
-.ba-knob{position:absolute;top:50%;left:var(--x,50%);transform:translate(-50%,-50%);
+.ba-knob{position:absolute;top:76%;left:var(--x,50%);transform:translate(-50%,-50%);
   width:52px;height:52px;border-radius:50%;border:1px solid rgba(239,233,224,.9);
   background:rgba(42,33,27,.3);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   display:grid;place-items:center;pointer-events:none;transition:transform .6s var(--slow)}
@@ -348,6 +361,7 @@ nav.over .burger i{background:var(--shell)}
 .ba-tag.l{left:16px}
 .ba-tag.r{right:16px}
 .ba-cap{display:flex;justify-content:space-between;gap:16px;margin-top:16px}
+.ba-cap a{white-space:nowrap;color:var(--bronze);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
 
 /* film grain — keeps the flat champagne from reading as plastic */
 .grain{position:fixed;inset:0;z-index:200;pointer-events:none;opacity:.05;mix-blend-mode:multiply;
@@ -374,6 +388,12 @@ nav.over .burger i{background:var(--shell)}
 @media(min-width:860px){.svc-row .dur{margin-left:0;flex:0 0 92px;text-align:right}}
 .svc-row .pr{font-family:'Marcellus',serif;font-size:20px;text-align:right}
 @media(min-width:860px){.svc-row .pr{flex:0 0 78px}}
+[hidden]{display:none!important}
+.care-list{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:0 40px;grid-template-columns:1fr}
+@media(min-width:760px){.care-list{grid-template-columns:1fr 1fr}}
+.care-list li{font-family:'Marcellus',serif;font-size:clamp(18px,1.8vw,22px);padding:16px 0;border-bottom:1px solid var(--line, rgba(0,0,0,.12))}
+.sig-warm{margin-top:14px;font-style:italic}
+.svc-row a.dur{text-decoration:none;color:inherit;border-bottom:1px solid currentColor;white-space:nowrap}
 .svc-note{margin-top:30px;font-size:13px;line-height:1.8;color:var(--soft);max-width:58ch}
 
 /* ═══════════════════════════════════════════════════════
@@ -390,6 +410,8 @@ nav.over .burger i{background:var(--shell)}
 .atelier .quote{margin-top:34px;padding-top:28px;border-top:1px solid var(--hair);
   font-family:'Marcellus',serif;font-size:clamp(17px,1.8vw,23px);line-height:1.52}
 .atelier .quote span{display:block;margin-top:16px}
+.atelier .values{list-style:none;margin:30px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 28px}
+.atelier .values li{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--bronze);padding-top:12px;border-top:1px solid var(--hair)}
 
 /* ═══════════════════════════════════════════════════════
    VOICES
@@ -486,9 +508,9 @@ footer .set{display:flex;gap:28px;flex-wrap:wrap}
     <div class="menu">
       <a href="#index" class="on">Index</a>
       <a href="#services">Services</a>
-      <a href="#method">Method</a>
-      <a href="#work">Work</a>
-      <a href="#atelier">Atelier</a>
+      <a href="#method">Philosophy</a>
+      <a href="#transformation">Results</a>
+      <a href="#atelier">Meet Maggie</a>
       <a href="#visit">Visit</a>
     </div>
     <a href="#book" class="nav-cta">Book</a>
@@ -497,9 +519,9 @@ footer .set{display:flex;gap:28px;flex-wrap:wrap}
 </div>
 <div class="sheet" id="sheet">
   <a href="#services">Services</a>
-  <a href="#method">Method</a>
-  <a href="#work">Work</a>
-  <a href="#atelier">Atelier</a>
+  <a href="#method">Philosophy</a>
+  <a href="#transformation">Results</a>
+  <a href="#atelier">Meet Maggie</a>
   <a href="#visit">Visit</a>
   <a href="#book" class="nav-cta">Book an appointment</a>
 </div>
@@ -518,21 +540,21 @@ footer .set{display:flex;gap:28px;flex-wrap:wrap}
 
     <div class="hcontent">
       <div class="hleft">
-        <h1>Where the arch<br>meets timeless<br><span class="etch">elegance</span></h1>
-        <p class="lede">Every brow is measured against the bone beneath it before a single hair moves. The shape is decided on paper — then kept for six weeks.</p>
-        <a href="#book" class="hcta">Book a mapping</a>
+        <h1>Enhance your<br>natural<br><span class="etch">beauty</span></h1>
+        <p class="lede">Bespoke cosmetic tattooing services, tailored uniquely to you. The goal is never to change who you are, but to reveal what is already yours — just a more refined expression of you.</p>
+        <a href="#book" class="hcta">Book consultation</a>
       </div>
 
       <div class="hcards">
         <div class="hcard sm">
-          <div class="k">Next availability</div>
-          <div class="v">Thursday, 14:30</div>
+          <div class="k">The studio</div>
+          <div class="v">Peregian Beach</div>
         </div>
         <div class="hcard lg">
-          <div class="k">Brows mapped</div>
-          <div class="n">2,400</div>
+          <div class="k">Bespoke brow artistry</div>
+          <div class="n">Six</div>
           <div class="dash"></div>
-          <div class="f">Every shape measured first</div>
+          <div class="f">Years, one obsession</div>
         </div>
       </div>
     </div>
@@ -543,13 +565,13 @@ footer .set{display:flex;gap:28px;flex-wrap:wrap}
 <section class="strip">
   <div class="in">
     <dl class="meta">
-      <div><dt class="cap">Mapping</dt><dd>Forty-five minutes</dd></div>
-      <div><dt class="cap">Thread &amp; tint</dt><dd>One hour</dd></div>
-      <div><dt class="cap">Lamination</dt><dd>Seventy-five minutes</dd></div>
+      <div><dt class="cap">Natural brow tattooing</dt><dd>Brows, tailored to you</dd></div>
+      <div><dt class="cap">Lip blush</dt><dd>Shape, colour &amp; definition</dd></div>
+      <div><dt class="cap">Lash line enhancement</dt><dd>Soft definition</dd></div>
     </dl>
     <div class="acts">
-      <a href="#book" class="btn btn-fill">Book a mapping</a>
-      <a href="#method" class="btn btn-line">The method</a>
+      <a href="#book" class="btn btn-fill">Book consultation</a>
+      <a href="#services" class="btn btn-line">Signature work</a>
     </div>
   </div>
 </section>
@@ -557,39 +579,57 @@ footer .set{display:flex;gap:28px;flex-wrap:wrap}
 <!-- MANIFESTO -->
 <section class="manifesto" id="method">
   <div class="in">
-    <span class="cap">The Method</span>
-    <p id="fillText" data-text="A brow is not a shape you pick from a chart. It is the line your face already has — found with a thread and a ruler, then cleared of everything that was hiding it."></p>
-    <div class="sig"><span class="ln"></span><span class="cap">Maggie Mac, founder</span><span class="ln"></span></div>
+    <span class="cap">The Philosophy</span>
+    <p id="fillText" data-text="Natural beauty is not created. It is carefully revealed."></p>
+    <div class="sig"><span class="ln"></span><span class="cap">Maggie Mac</span><span class="ln"></span></div>
   </div>
 </section>
 
 <!-- BEFORE / AFTER -->
 <section class="ba" id="transformation">
   <div class="in">
-    <div class="sec-head rv">
-      <span class="cap">The difference</span>
-      <h2>Drag to see the shape</h2>
-      <p>Same framing, same light. Nothing drawn on — only what was hiding the line taken away.</p>
+    <div class="ba-copy">
+      <div class="rv">
+        <span class="cap">Real results</span>
+        <h2>See the difference</h2>
+        <p class="ba-lede">My three signature treatments. Same face, same angle — drag the line to compare.</p>
+      </div>
+
+      <div class="ba-tabs rv" role="tablist" aria-label="Choose a treatment">
+        <button class="ba-tab" role="tab" aria-selected="true" aria-controls="baFrame" data-k="brow">
+          <span class="n">01</span>
+          <span class="t">Natural Brow Tattooing<small>Soft, full shape that frames the face</small></span>
+        </button>
+        <button class="ba-tab" role="tab" aria-selected="false" aria-controls="baFrame" data-k="lip">
+          <span class="n">02</span>
+          <span class="t">Lip Blush<small>Even tone and a defined, fresh colour</small></span>
+        </button>
+        <button class="ba-tab" role="tab" aria-selected="false" aria-controls="baFrame" data-k="lash">
+          <span class="n">03</span>
+          <span class="t">Lash Line Enhancement<small>Fuller lashes, eyes that wake up defined</small></span>
+        </button>
+      </div>
     </div>
 
-    <div class="ba-frame" id="baFrame" role="slider" tabindex="0"
-         aria-label="Before and after comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-      <img class="before" src="assets/ba-before.webp" alt="Brows before shaping — uneven and undefined">
-      <img class="after" src="assets/ba-after.webp" alt="Brows after mapping, threading and tint">
-      <span class="ba-tag l">Before</span>
-      <span class="ba-tag r">After</span>
-      <span class="ba-line"></span>
-      <span class="ba-knob">
-        <svg viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="1.4"
-             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M9 2 3 7l6 5M15 2l6 5-6 5"/>
-        </svg>
-      </span>
-    </div>
-
-    <div class="ba-cap">
-      <span class="cap">I — Untouched</span>
-      <span class="cap">II — Mapped &amp; threaded</span>
+    <div class="ba-stage rv">
+      <div class="ba-frame" id="baFrame" role="slider" tabindex="0"
+           aria-label="Before and after comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+        <img class="before" src="assets/ba-brow-before.webp" alt="Brows before natural brow tattooing" width="700" height="875">
+        <img class="after" src="assets/ba-brow-after.webp" alt="Brows after natural brow tattooing" width="700" height="875">
+        <span class="ba-tag l">Before</span>
+        <span class="ba-tag r">After</span>
+        <span class="ba-line"></span>
+        <span class="ba-knob">
+          <svg viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="1.4"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 2 3 7l6 5M15 2l6 5-6 5"/>
+          </svg>
+        </span>
+      </div>
+      <div class="ba-cap">
+        <span class="cap" id="baName">Natural Brow Tattooing</span>
+        <a class="cap" href="#book">Book a consultation</a>
+      </div>
     </div>
   </div>
 </section>
@@ -598,53 +638,48 @@ footer .set{display:flex;gap:28px;flex-wrap:wrap}
 <section class="services" id="services">
   <div class="in">
     <div class="sec-head rv">
-      <span class="cap">The Register</span>
-      <h2>Services</h2>
-      <p>Each appointment opens with a mapping. Nothing is removed before the shape is agreed.</p>
+      <span class="cap">Our signature work</span>
+      <h2>Tailored to you</h2>
+      <p>I offer a range of techniques, and every one is chosen with you in mind. I will always recommend the technique that best suits your features, skin and lifestyle — whichever you choose, the result is soft, natural and uniquely yours.</p>
     </div>
 
-    <!-- PLACEHOLDER PRICES, AUD. Pitched at the Australian market (lamination runs
-         A$90–130 in Sydney, threading A$25–40, tint A$20–30) so the layout is
-         realistic — but these are NOT Maggie's prices. Replace with her real card. -->
     <div class="svc-list">
       <div class="svc-row rv">
         <span class="num">I</span>
-        <span class="nm">Brow Mapping</span>
-        <span class="ds">The full consultation. Ratio, arch, tail and the asymmetry your face already carries, plotted before anything is touched.</span>
-        <span class="dur">45 min</span>
-        <span class="pr">A$55</span>
+        <span class="nm">Natural Brow Tattooing</span>
+        <span class="ds">Brows, tailored to you. Your features are one of a kind, and your brows should reflect that.</span>
+        <a class="dur" href="#book">Book my brow</a>
       </div>
       <div class="svc-row rv">
         <span class="num">II</span>
-        <span class="nm">Threading</span>
-        <span class="ds">A clean, precise edge taken hair by hair. Kinder to fine skin than wax and far more exact.</span>
-        <span class="dur">30 min</span>
-        <span class="pr">A$35</span>
+        <span class="nm">Lip Blush</span>
+        <span class="ds">Give your pout the love it truly deserves. A semi-permanent lip tattoo that enhances your natural shape, colour and the definition of the border — creating symmetry and the illusion of fuller lips.</span>
+        <a class="dur" href="#book">Book my blush</a>
       </div>
       <div class="svc-row rv">
         <span class="num">III</span>
-        <span class="nm">Lamination</span>
-        <span class="ds">Direction, not volume. Hairs are set to follow the shape so the brow reads full without a pencil.</span>
-        <span class="dur">75 min</span>
-        <span class="pr">A$120</span>
-      </div>
-      <div class="svc-row rv">
-        <span class="num">IV</span>
-        <span class="nm">Tint</span>
-        <span class="ds">Depth matched to your root colour, never darker than your own hair. Softens gaps without drawing them in.</span>
-        <span class="dur">20 min</span>
-        <span class="pr">A$25</span>
-      </div>
-      <div class="svc-row rv">
-        <span class="num">V</span>
-        <span class="nm">Correction</span>
-        <span class="ds">For brows grown out, over-plucked or shaped by someone else. We start from what is actually there.</span>
-        <span class="dur">60 min</span>
-        <span class="pr">A$105</span>
+        <span class="nm">Lash Line Enhancement</span>
+        <span class="ds">Soft definition, precisely placed. A natural eyeliner tattoo — a soft, lash-hugging line that defines your lash line without looking drawn on. Perfect for subtle, natural everyday wear.</span>
+        <a class="dur" href="#book">Book my eyeliner</a>
       </div>
     </div>
 
-    <p class="svc-note">First visits include the mapping consultation as standard. Patch tests are required forty-eight hours before any tint or lamination.</p>
+    <div class="sec-head rv" style="margin-top:72px">
+      <span class="cap">Complementary services</span>
+      <h2>Brow &amp; Lash Care</h2>
+      <p>To keep your brows and lashes looking incredible.</p>
+    </div>
+    <ul class="care-list rv">
+      <li>Brow Sculpting &amp; Mapping</li>
+      <li>Brow Tint / Dye</li>
+      <li>Brow Lamination</li>
+      <li>Men&rsquo;s Brow Grooming</li>
+      <li>Lash Lift</li>
+      <li>Facial Waxing</li>
+      <li>Cosmetic Tattooing Touch-ups</li>
+      <li>Cosmetic Tattooing Corrective Work</li>
+    </ul>
+    <p class="svc-note"><a href="#book" class="btn btn-line">Book now</a></p>
   </div>
 </section>
 
@@ -656,22 +691,22 @@ footer .set{display:flex;gap:28px;flex-wrap:wrap}
 
     <div class="st p1" id="p1">
       <div class="box">
-        <span class="cap">I — Read</span>
-        <h2>Every hair has a direction</h2>
-        <p>Growth pattern decides what a brow can become. We read it before we touch it — which hairs carry the arch, and which only look as though they do.</p>
+        <span class="cap">I — Listen</span>
+        <h2>Your face, your brows</h2>
+        <p>Your features are one of a kind, and your brows should reflect that. I will always recommend the technique that best suits your features, skin and lifestyle.</p>
       </div>
     </div>
 
     <div class="st p2" id="p2">
       <div class="box">
-        <span class="cap">II — Work</span>
-        <h2>Four tools, one line</h2>
-        <p>Thread for the edge, lamination for direction, tint for depth, restraint for everything else. The finest result is the one nobody can name.</p>
+        <span class="cap">II — Reveal</span>
+        <h2>Your features, refined</h2>
+        <p>A conservative approach, working with you every step of the way to achieve the results you want. The experience is private, considered and unhurried.</p>
         <div class="steps">
-          <div><div class="n">I</div><div class="t">Map</div></div>
-          <div><div class="n">II</div><div class="t">Thread</div></div>
-          <div><div class="n">III</div><div class="t">Laminate</div></div>
-          <div><div class="n">IV</div><div class="t">Tint</div></div>
+          <div><div class="n">I</div><div class="t">Detail</div></div>
+          <div><div class="n">II</div><div class="t">Natural</div></div>
+          <div><div class="n">III</div><div class="t">Modern</div></div>
+          <div><div class="n">IV</div><div class="t">Care</div></div>
         </div>
       </div>
     </div>
@@ -679,7 +714,7 @@ footer .set{display:flex;gap:28px;flex-wrap:wrap}
 </section>
 
 <!-- GALLERY -->
-<section class="gallery" id="work">
+<section class="gallery" id="work" hidden>
   <div class="head rv">
     <span class="cap">Selected work</span>
     <h2>The record</h2>
@@ -700,17 +735,23 @@ footer .set{display:flex;gap:28px;flex-wrap:wrap}
 <section class="atelier" id="atelier">
   <div class="in">
     <div class="pic rv">
-      <img src="assets/threading.webp" alt="Maggie Mac threading a client's brow">
+      <img src="assets/maggie-portrait.jpg" alt="Maggie Mac, cosmetic tattoo artist, in her Peregian Beach studio" loading="lazy" style="object-position:50% 22%">
     </div>
     <div class="rv">
-      <span class="cap">The Atelier</span>
-      <h2>Nine years, one obsession</h2>
-      <p>Maggie trained in threading before lamination existed as a service, in a room where the only tools were a spool of cotton and a ruler. That order never changed: measure, agree the shape, then remove — and only then reach for anything else.</p>
-      <p>The studio takes one client at a time. No overlap, no rushing a set to fit a diary. A first appointment runs long on purpose, because the mapping is the part that decides the next six weeks.</p>
+      <span class="cap">Meet Maggie</span>
+      <h2>Six years, one obsession</h2>
+      <p>Maggie believes every face is unique, so her work combines years of training and hands-on experience, a genuine passion for the craft and a conservative approach — working with you every step of the way to achieve the results you want.</p>
+      <p>The experience is private, considered and unhurried. At the end of the day, this work is about confidence: helping you look in the mirror and see yourself, just more beautiful and effortlessly put-together.</p>
       <div class="quote">
-        “A brow should look like it grew that way. If someone can tell where I stopped, I have taken too much.”
-        <span class="cap">Maggie Mac, founder</span>
+        “Experience has taught me that technique is only half of the equation — the other half is listening. No two faces are the same, so no two results should be either.”
+        <span class="cap">Maggie Mac</span>
       </div>
+      <ul class="values">
+        <li>Attention to detail</li>
+        <li>Natural results</li>
+        <li>Modern technique</li>
+        <li>Refined care</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -722,26 +763,25 @@ footer .set{display:flex;gap:28px;flex-wrap:wrap}
       <span class="cap">In their words</span>
       <h2>What clients say</h2>
     </div>
-    <!-- PLACEHOLDER TESTIMONIALS — replace with real, permissioned quotes -->
     <div class="vgrid">
       <div class="voice rv">
-        <p class="q">“The first person who measured my face instead of showing me a chart. Six weeks on, they still sit exactly right.”</p>
-        <div class="who"><span class="ln"></span><span class="cap">Placeholder — awaiting a real client quote</span></div>
+        <p class="q">“Thank you so much, Maggie, for the incredible job you did on my eyebrows! I was so impressed with your thoughtful process and amazing attention to detail, and I absolutely love how they turned out.”</p>
+        <div class="who"><span class="ln"></span><span class="cap">Laura-lee Smith</span></div>
       </div>
       <div class="voice rv">
-        <p class="q">“I came in after a decade of over-plucking, convinced there was nothing to work with. She proved otherwise.”</p>
-        <div class="who"><span class="ln"></span><span class="cap">Placeholder — awaiting a real client quote</span></div>
+        <p class="q">“I had an amazing experience getting my brows tattooed by Maggie. She was incredibly professional, making sure I felt comfortable and informed throughout the process. I’d definitely go back to her for future touch-ups and highly recommend her.”</p>
+        <div class="who"><span class="ln"></span><span class="cap">Julie Terrell</span></div>
       </div>
       <div class="voice rv">
-        <p class="q">“Nobody has asked me what I did. They just ask whether I have been sleeping better. That is the whole point.”</p>
-        <div class="who"><span class="ln"></span><span class="cap">Placeholder — awaiting a real client quote</span></div>
+        <p class="q">“I always leave with beautifully shaped brows that look natural and polished. Her attention to detail, professionalism and care are exceptional. I wouldn’t go anywhere else!”</p>
+        <div class="who"><span class="ln"></span><span class="cap">Pannie Mitchell</span></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- RESULTS -->
-<section class="results" id="results">
+<section class="results" id="results" hidden>
   <div class="in">
     <h2>Only the proven results here</h2>
     <div class="grid" id="statGrid">
@@ -762,21 +802,20 @@ footer .set{display:flex;gap:28px;flex-wrap:wrap}
     <div class="sec-head rv">
       <span class="cap">Practical</span>
       <h2>Visit the studio</h2>
-      <p>By appointment only. One client at a time, so arrivals are staggered and never overlap.</p>
+      <p>By appointment only.</p>
     </div>
-    <!-- PLACEHOLDER DETAILS — address, hours and contact all need Maggie's real information -->
     <dl class="vcols">
       <div class="vcol rv">
         <dt class="cap">Where</dt>
-        <dd>Studio address<small>Add the street, city and postcode. A note on the nearest station or parking helps first-time clients.</small></dd>
+        <dd>Shop 3, 212 David Low Way<small>Peregian Beach QLD 4573. Allow time to find the studio and suitable parking.</small></dd>
       </div>
       <div class="vcol rv">
         <dt class="cap">Hours</dt>
-        <dd>Tuesday — Saturday<small>10:00 — 18:00. Late appointments on Thursdays. Closed Sunday and Monday.</small></dd>
+        <dd>Mon · Wed · Fri<small>8:00am — 5:00pm. Open alternate Saturdays — check the booking calendar. Late appointments on Mondays by request. Closed Tuesdays &amp; Thursdays.</small></dd>
       </div>
       <div class="vcol rv">
-        <dt class="cap">Before you come</dt>
-        <dd>Grown out is perfect<small>Leave brows unplucked for two weeks if you can. Patch test forty-eight hours ahead for tint or lamination.</small></dd>
+        <dt class="cap">Before your appointment</dt>
+        <dd>Come relaxed<small>If you are getting a tattoo, have a light meal, wear comfortable clothing and arrive make-up free. You will receive a pre-appointment guideline when you book.</small></dd>
       </div>
     </dl>
   </div>
@@ -787,7 +826,8 @@ footer .set{display:flex;gap:28px;flex-wrap:wrap}
   <div class="in rv">
     <span class="cap">Appointments</span>
     <h2>Come as you <em>are</em></h2>
-    <p>New clients begin with a mapping consultation. Grown out is perfect — there is more to work with.</p>
+    <p>Your natural features are my starting point, and I will guide you through every step. Bring your questions, your inspiration photos and your nerves — all are welcome!</p>
+    <p class="sig-warm">Warmly, Maggie</p>
     <div class="acts">
       <a href="#" class="btn btn-fill" data-book>Book an appointment</a>
       <a href="#" class="btn btn-line" data-whatsapp>Message on WhatsApp</a>
@@ -796,9 +836,10 @@ footer .set{display:flex;gap:28px;flex-wrap:wrap}
 </section>
 
 <footer>
-  <span class="cap">© <span id="yr">2026</span> Maggie Mac Brow Atelier</span>
+  <span class="cap">© <span id="yr">2026</span> Maggie Mac Beauty</span>
   <span class="set">
     <a class="cap" href="#" data-instagram>Instagram</a>
+    <a class="cap" href="#" data-facebook>Facebook</a>
     <a class="cap" href="#" data-whatsapp>WhatsApp</a>
     <a class="cap" href="#book">Book</a>
   </span>
@@ -953,8 +994,8 @@ const proc=(()=>{
 /* MARQUEE */
 (function(){
   const it=t=>'<div class="it"><span class="d"></span><span>'+t+'</span></div>';
-  const A=['Brow mapping','Threading','Lamination'];
-  const B=['Tint','Henna','Correction','Aftercare'];
+  const A=['Natural brow tattooing','Lip blush','Lash line enhancement'];
+  const B=['Attention to detail','Natural results','Modern technique','Refined care'];
   const mk=a=>a.concat(a).map(it).join('');
   m1.innerHTML=m1b.innerHTML=mk(A);
   m2.innerHTML=m2b.innerHTML=mk(B);
@@ -991,6 +1032,33 @@ const proc=(()=>{
     if(e.key==='End'){set(100);e.preventDefault()}
   });
   set(50);
+
+  // three treatments share the one frame — swap the pair, re-centre the line
+  const SETS={
+    brow:['Natural Brow Tattooing','brows'],
+    lip:['Lip Blush','lips'],
+    lash:['Lash Line Enhancement','lash line']
+  };
+  const tabs=[...document.querySelectorAll('.ba-tab')];
+  const [ib,ia]=f.querySelectorAll('img'), nm=document.getElementById('baName');
+  tabs.forEach(t=>t.addEventListener('click',()=>{
+    if(t.getAttribute('aria-selected')==='true') return;
+    tabs.forEach(o=>o.setAttribute('aria-selected',String(o===t)));
+    const k=t.dataset.k,[label,part]=SETS[k];
+    f.classList.add('swap');
+    const nb=new Image(),na=new Image(); let n=0;
+    const go=()=>{ if(++n<2) return;
+      ib.src=nb.src; ia.src=na.src;
+      ib.alt=part[0].toUpperCase()+part.slice(1)+' before '+label.toLowerCase();
+      ia.alt=part[0].toUpperCase()+part.slice(1)+' after '+label.toLowerCase();
+      nm.textContent=label; set(50);
+      requestAnimationFrame(()=>f.classList.remove('swap'));
+    };
+    nb.onload=na.onload=nb.onerror=na.onerror=go;
+    setTimeout(()=>{nb.src='assets/ba-'+k+'-before.webp'; na.src='assets/ba-'+k+'-after.webp';},200);
+  }));
+  // preload the other two pairs once the section is near
+  ['lip','lash'].forEach(k=>['before','after'].forEach(v=>{const i=new Image();i.src='assets/ba-'+k+'-'+v+'.webp'}));
 
   // a single unprompted sweep on first view, so the interaction is discoverable
   const io=new IntersectionObserver(es=>es.forEach(en=>{
