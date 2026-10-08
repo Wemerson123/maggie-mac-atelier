@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Maggie Mac Beauty — Bespoke Brow Artistry, Peregian Beach</title>
 <meta name="description" content="Bespoke cosmetic tattooing in Peregian Beach — natural brow tattooing, lip blush and lash line enhancement, tailored uniquely to you.">
+<!-- Link preview (WhatsApp, Instagram, Facebook, iMessage): absolute URLs required -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Maggie Mac Beauty">
+<meta property="og:url" content="https://maggiemac.com.au/">
+<meta property="og:title" content="Maggie Mac — Brow Atelier, Peregian Beach">
+<meta property="og:description" content="Bespoke cosmetic tattooing — natural brow tattooing, lip blush and lash line enhancement, tailored uniquely to you.">
+<meta property="og:image" content="https://maggiemac.com.au/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Maggie Mac, Brow Atelier — cosmetic tattooing in Peregian Beach">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maggiemac.com.au/assets/og-image.jpg">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23EFE9E0'/><path d='M18 60c12-20 52-20 64 0' stroke='%232A211B' stroke-width='5' fill='none' stroke-linecap='round'/></svg>">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -262,12 +274,18 @@ nav.over .burger i{background:var(--shell)}
 .gallery .head{padding:0 var(--pad);margin-bottom:clamp(48px,8vh,86px)}
 .gallery h2{font-family:'Marcellus',serif;font-size:clamp(30px,4.6vw,56px);line-height:1.1;margin-top:20px}
 .gallery .head p{margin:18px auto 0;max-width:40ch;font-size:14.5px;line-height:1.75;color:var(--soft)}
-.gfilters{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;padding:0 var(--pad);margin-bottom:clamp(34px,6vh,56px)}
-.gfilters button{font:inherit;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--soft);
-  background:none;border:1px solid var(--hair);padding:11px 20px;cursor:pointer;transition:color .4s,border-color .4s,background .4s}
-.gfilters button:hover{color:var(--deep);border-color:rgba(42,33,27,.4)}
-.gfilters button.on{color:var(--shell);background:var(--deep);border-color:var(--deep)}
+.gfilters{display:flex;justify-content:center;padding:0 var(--pad);margin-bottom:clamp(40px,7vh,64px)}
+.gfilters .bar{display:inline-flex;flex-wrap:wrap;justify-content:center;background:var(--shell-2);
+  border:1px solid rgba(42,33,27,.18);padding:6px;gap:6px;box-shadow:0 14px 40px rgba(42,33,27,.08)}
+.gfilters button{font-family:'Marcellus',serif;font-size:clamp(14px,1.25vw,17px);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--deep);background:none;border:0;padding:clamp(14px,1.8vw,18px) clamp(20px,2.6vw,38px);cursor:pointer;
+  position:relative;transition:color .4s,background .4s}
+.gfilters button::after{content:"";position:absolute;left:50%;right:50%;bottom:9px;height:1px;background:var(--bronze);transition:left .45s var(--slow),right .45s var(--slow)}
+.gfilters button:hover::after{left:28%;right:28%}
+.gfilters button.on{color:var(--shell);background:var(--deep)}
+.gfilters button.on::after{display:none}
 .gfilters button:focus-visible{outline:1px solid var(--bronze);outline-offset:3px}
+@media(max-width:560px){.gfilters .bar{display:grid;grid-template-columns:1fr 1fr;width:100%}.gfilters button{padding:15px 10px}}
 .ggrid{max-width:1240px;margin:0 auto;padding:0 var(--pad);columns:3 300px;column-gap:18px;text-align:left}
 .gi{break-inside:avoid;margin:0 0 18px;overflow:hidden;background:var(--shell-2);
   opacity:1;transform:none;transition:opacity .5s var(--slow),transform .5s var(--slow)}
@@ -743,11 +761,12 @@ footer .set{display:flex;gap:28px;flex-wrap:wrap}
     <p>Real clients, photographed in the studio. Tap any image to see it up close.</p>
   </div>
   <div class="gfilters rv" role="toolbar" aria-label="Filter the portfolio">
-    <button type="button" class="on" data-f="all" aria-pressed="true">All</button>
+    <div class="bar">
     <button type="button" data-f="brows" aria-pressed="false">Brows</button>
     <button type="button" data-f="lips" aria-pressed="false">Lips</button>
     <button type="button" data-f="eyes" aria-pressed="false">Eyes</button>
     <button type="button" data-f="studio" aria-pressed="false">The studio</button>
+    </div>
   </div>
   <div class="ggrid" id="ggrid">
       <figure class="gi" data-cat="brows"><button type="button" aria-label="View larger: Natural brow tattooing — before and after"><img src="assets/gallery/g04-sm.webp" data-full="assets/gallery/g04.webp" alt="Natural brow tattooing — before and after" width="720" height="591" loading="lazy" decoding="async"></button></figure>
@@ -1050,9 +1069,11 @@ const proc=(()=>{
     });
     more.hidden=expanded||filter!=='all'||items.length<=FIRST;
   };
+  /* No "All" button: the portfolio opens on everything; tapping the active
+     category again clears it and brings everything back. */
   btns.forEach(b=>b.addEventListener('click',()=>{
-    filter=b.dataset.f;
-    btns.forEach(o=>{o.classList.toggle('on',o===b);o.setAttribute('aria-pressed',String(o===b));});
+    filter=filter===b.dataset.f?'all':b.dataset.f;
+    btns.forEach(o=>{const on=o.dataset.f===filter;o.classList.toggle('on',on);o.setAttribute('aria-pressed',String(on));});
     apply();
   }));
   more.addEventListener('click',()=>{expanded=true;apply();});
