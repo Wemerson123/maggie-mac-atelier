@@ -226,6 +226,21 @@ nav.over .burger i{background:var(--shell)}
 .btn-line{border:1px solid var(--hair);color:var(--deep)}
 .btn-line:hover{border-color:var(--deep)}
 
+/* Floating Book button — appears once the hero is behind you, steps aside
+   while the Book section itself is on screen. Sits under the menu sheet (50+)
+   and the lightbox (1000). */
+.fbook{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));z-index:45;
+  display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;
+  background:var(--deep);color:var(--shell);border:1px solid rgba(239,233,224,.18);
+  font-size:10.5px;text-transform:uppercase;letter-spacing:.26em;
+  box-shadow:0 12px 30px rgba(42,33,27,.28);
+  opacity:0;transform:translateY(14px);pointer-events:none;
+  transition:opacity .5s var(--slow),transform .5s var(--slow),background-color .4s,color .4s}
+.fbook.on{opacity:1;transform:none;pointer-events:auto}
+.fbook:hover{background:var(--shell);color:var(--deep);border-color:var(--deep)}
+.fbook i{width:6px;height:6px;border-radius:50%;background:var(--bronze);flex:none}
+@media(prefers-reduced-motion:reduce){.fbook{transition:none}}
+
 /* ═══════════════════════════════════════════════════════
    MANIFESTO
    ═══════════════════════════════════════════════════════ */
@@ -928,6 +943,8 @@ footer .set{display:flex;gap:28px;flex-wrap:wrap}
 
 </main>
 
+<a class="fbook" id="fbook" href="https://app.acuityscheduling.com/schedule/47f589d2" target="_blank" rel="noopener" aria-label="Book an appointment"><i aria-hidden="true"></i>Book</a>
+
 <script>
 (function(){
 'use strict';
@@ -1213,6 +1230,17 @@ const frame=()=>{hero();fill();proc();tick=false;};
 addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(frame);}},{passive:true});
 addEventListener('resize',()=>requestAnimationFrame(frame),{passive:true});
 frame();
+
+/* FLOATING BOOK */
+(function(){
+  const fb=document.getElementById('fbook'), book=document.getElementById('book');
+  if(!fb) return;
+  let bookIn=false;
+  if(book) new IntersectionObserver(([e])=>{bookIn=e.isIntersecting;upd();},{threshold:.25}).observe(book);
+  function upd(){fb.classList.toggle('on', scrollY>innerHeight*.6 && !bookIn);}
+  addEventListener('scroll',upd,{passive:true});
+  upd();
+})();
 })();
 </script>
 </body>
