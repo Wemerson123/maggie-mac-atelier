@@ -56,5 +56,25 @@ footer{border-top:1px solid var(--hair);padding-top:24px;padding-bottom:40px;dis
 <p class="muted">Last updated: 23 October 2026.</p>
 </main>
 <footer><span class="cap">© 2026 Maggie Mac Beauty</span><a class="cap" href="/">Home</a></footer>
+<script>
+/* analytics (GA4): skipped on localhost; tracks bookings, WhatsApp and social taps */
+(function(){
+  var GA_ID='G-YGJRZTE2DT', track=function(){};
+  if(!/localhost|127\.0\.0\.1/.test(location.hostname)){
+    var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js',new Date());gtag('config',GA_ID);
+    track=function(n,p){gtag('event',n,p||{});};
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a');if(!a)return;
+    var h=a.getAttribute('href')||'',where=a.id==='fbook'?'floating_button':a.closest('nav,#navwrap')?'menu':a.closest('footer')?'footer':(a.closest('section')||{}).id||'page';
+    if(/acuityscheduling\.com/.test(h))track('generate_lead',{method:'booking',placement:where});
+    else if(/wa\.me\//.test(h))track('generate_lead',{method:'whatsapp',placement:where});
+    else if(/instagram\.com|facebook\.com/.test(h))track('social_click',{network:/instagram/.test(h)?'instagram':'facebook',placement:where});
+    else if(/google\.[a-z.]+\/maps/.test(h))track('get_directions',{placement:where});
+  },true);
+})();
+</script>
 </body>
 </html>

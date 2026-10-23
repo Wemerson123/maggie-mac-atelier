@@ -519,6 +519,8 @@ footer a{transition:color .5s}
 footer a:hover{color:var(--deep)}
 footer .set{display:flex;gap:28px;flex-wrap:wrap}
 footer .cap{color:#6a5f54}
+.vdir{display:inline-block;margin-top:14px;color:var(--deep);text-decoration:none;border-bottom:1px solid var(--bronze);padding-bottom:4px}
+.vdir:hover{color:var(--bronze)}
 
 /* reveal state is `shown`, NOT `in` — `.in` is the section width wrapper and the
    two collided, turning revealed text blocks into grid containers. */
@@ -910,7 +912,7 @@ footer .cap{color:#6a5f54}
     <dl class="vcols">
       <div class="vcol rv">
         <dt class="cap">Where</dt>
-        <dd>Shop 3, 212 David Low Way<small>Peregian Beach QLD 4573 (Inside Nourish Skin Clinic). Allow time to find the studio and suitable parking.</small></dd>
+        <dd>Shop 3, 212 David Low Way<small>Peregian Beach QLD 4573 (Inside Nourish Skin Clinic). Allow time to find the studio and suitable parking.</small><a class="vdir cap" href="https://www.google.com/maps/search/?api=1&amp;query=Shop+3+212+David+Low+Way+Peregian+Beach+QLD+4573" target="_blank" rel="noopener">Get directions &rarr;</a></dd>
       </div>
       <div class="vcol rv">
         <dt class="cap">Hours</dt>
@@ -1249,6 +1251,26 @@ frame();
   addEventListener('scroll',upd,{passive:true});
   upd();
 })();
+})();
+</script>
+<script>
+/* analytics (GA4): skipped on localhost; tracks bookings, WhatsApp and social taps */
+(function(){
+  var GA_ID='G-YGJRZTE2DT', track=function(){};
+  if(!/localhost|127\.0\.0\.1/.test(location.hostname)){
+    var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js',new Date());gtag('config',GA_ID);
+    track=function(n,p){gtag('event',n,p||{});};
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a');if(!a)return;
+    var h=a.getAttribute('href')||'',where=a.id==='fbook'?'floating_button':a.closest('nav,#navwrap')?'menu':a.closest('footer')?'footer':(a.closest('section')||{}).id||'page';
+    if(/acuityscheduling\.com/.test(h))track('generate_lead',{method:'booking',placement:where});
+    else if(/wa\.me\//.test(h))track('generate_lead',{method:'whatsapp',placement:where});
+    else if(/instagram\.com|facebook\.com/.test(h))track('social_click',{network:/instagram/.test(h)?'instagram':'facebook',placement:where});
+    else if(/google\.[a-z.]+\/maps/.test(h))track('get_directions',{placement:where});
+  },true);
 })();
 </script>
 </body>
