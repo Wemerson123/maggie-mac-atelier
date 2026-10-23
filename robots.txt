@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://maggiemac.com.au/sitemap.xml
