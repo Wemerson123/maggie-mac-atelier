@@ -38,7 +38,7 @@
   --shell-2:#E6DED2;
   --deep:#2A211B;           /* espresso, never pure black */
   --bronze:#9A7B4F;
-  --soft:#7A6E62;
+  --soft:#6B5F53;
   --hair:rgba(42,33,27,.14);
   --pad:24px;
   --slow:cubic-bezier(.16,1,.3,1);
@@ -518,7 +518,6 @@ footer{background:var(--shell);border-top:1px solid var(--hair);padding:28px var
 footer a{transition:color .5s}
 footer a:hover{color:var(--deep)}
 footer .set{display:flex;gap:28px;flex-wrap:wrap}
-footer .cap{color:#6a5f54}
 .vdir{display:inline-block;margin-top:14px;color:var(--deep);text-decoration:none;border-bottom:1px solid var(--bronze);padding-bottom:4px}
 .vdir:hover{color:var(--bronze)}
 
@@ -1258,7 +1257,9 @@ frame();
 (function(){
   var GA_ID='G-YGJRZTE2DT', track=function(){};
   if(!/localhost|127\.0\.0\.1/.test(location.hostname)){
-    var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;document.head.appendChild(s);
+    var load=function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;document.head.appendChild(s);};
+    /* load after the page has rendered; events queue in dataLayer until then */
+    if(document.readyState==='complete')setTimeout(load,1200);else addEventListener('load',function(){setTimeout(load,1200);});
     window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};
     gtag('js',new Date());gtag('config',GA_ID);
     track=function(n,p){gtag('event',n,p||{});};
